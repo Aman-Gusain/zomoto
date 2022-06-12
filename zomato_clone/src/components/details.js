@@ -264,7 +264,7 @@ class Details extends React.Component {
                         <div className="content">
                             <div className="about">About this place</div>
                             <div className="head">Cuisine</div>
-                            {/* <div className="value">{restaurants && restaurants.cuisine}</div> */}
+                            <div className="value">{restaurants.cuisine?.map(el=>el.name)}</div>
                             <div className="head">Average Cost</div>
                             <div className="value">&#8377; {restaurants.min_price} for two people(approx)</div>
                         </div>
