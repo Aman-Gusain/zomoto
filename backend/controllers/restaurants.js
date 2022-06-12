@@ -133,7 +133,7 @@ exports.filterRestaurant = (req, res) => {
         }
 
 
-        Restaurant.find(filterPayload).sort({ min_price: sort })
+        Restaurant.find({}).sort({ min_price: sort })
             .then(response => {
                 const count = Math.ceil(response.length / 2);
                 const pageCountArr = [];
@@ -149,9 +149,10 @@ exports.filterRestaurant = (req, res) => {
     //api restaurantByLoc
 exports.getRestaurantsByLocation = (req, res) => {
         const { locationId } = req.params;
-        Restaurant.find({ location_id: locationId })
+        console.log(locationId);
+        Restaurant.find({ })
             .then(response => {
-                res.status(200).json({ message: "Restaurants Fetched Succesfully", restaurants: response })
+                res.status(200).json({ message: "Restaurants Fetched Succesfully", restaurants: response.filter(el=>el.location_d=locationId) })
             }).catch(err => {
                 res.status(500).json({ error: err })
             })
